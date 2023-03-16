@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Assignment3</title>
+    </head>
+</style>
+
+<a style="font-size: 25px;" href="list.html">HOME</a> ! <a style="font-size: 25px;color: black;" href="list.html">Getting started</a> ! <a style="font-size: 25px;" href="list.html">Documentation</a> ! <a style="font-size: 25px;"  href="list.html">Browse packages</a>
+
+
+    <body style="margin-left: 100px;margin-right: 100px; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+      <div style="color: blue; padding-top: 20px;">
+        <ol>
+            <li>Dependency management</li>
+            <li>System Requirements</li>
+            <li>Installation-Linux/Unix/macOS</li>
+            <ol>
+                <li>Locally</li>
+                <li>Globally</li>
+            </ol> <br>
+            <li>Installation-Windows</li>
+            <ol>
+                <li>Using the installer</li>
+                <li>Manual Installation</li>
+            </ol> <br>
+
+            <li>Docker image</li>
+            <li>Using composer</li>
+
+        </ol>
+      </div>
+      <h2>Introduction <span style="color: rgb(157, 192, 192);">#</span></h2>
+      <p>
+        Composer is a tool for dependency management in PHP. it allows you to declare the libraries your project depends on and it will manage (install/update) them for you.
+      </p>
+      <h2>Dependency management <span style="color: rgb(157, 192, 192);">#</span></h2>
+      <p>Composer is <strong>not</strong> a package manager in the same sense as YUM or Apt, it deals with "packages" or libraries,but it manages them on per-project bases. installing them in a directory (e.g. <span style="border: 1px solid black">vendor</span> inside your project. By default, it does not install anything  globally.<br> Thus, it is a dependency manager.it does however support a "global" project for convenience via the <span style="color: blue;">global</span> command.
+        <p>This idea is not new and conputer is strongly inspired by node's <span style="color: blue;">npm</span> and ruby's <span style="color: blue;">bundler</span> .</p>
+        <p>Suppose
+            <ol>
+                <li>You have projects that depends on a number of libraries.</li>
+                <li>Some of those libraries depend on other libraries.</li>
+            </ol>
+            
+        </p>
+        <p>
+            Composer
+            <ol>
+                <li>Enables you to declare the libraries you depend on.</li>
+                <li>Finds out which versions of which packages can and need to be installed, and installs them (meaning it downloads them to your project).</li>
+                <li>You can update all your dependencies in one command.</li>
+            </ol>
+        
+        </p>
+        <p>See the <span style="color: blue;">Basic usage</span> chapters for more details and declaring dependencies.</p>
+    </p>
+    <h2>System Requirements <span style="color: rgb(157, 192, 192);">#</span></h2>
+    <p>
+        Composer in its latest version requires PHP 7.2.5 to run. A long-term-support version (2.2.x) still offers suppoer for PHP 5.3.2+ in case you are stuck with a legacy PHP version. A few sensitive php settings and compile flags are also required, but when using installer you will be warned about any incompatibilities. <br> <br>
+        To install packages from sources instead of plain zip archives, you will need git, svn, fossil, or hg depending on how the package is version-controlled. <br> <br>
+        Composer is multi-platform and we strive to make it run equally well on windows, Linux, and macOs.
+
+    </p>
+    <p>
+       <h2>Installation-Linux/ Unix / macOS <span style="color: rgb(157, 192, 192);">#</span></h2>
+       <h3>Downloading the composer Executable <span style="color: rgb(157, 192, 192);">#</span></h3>
+       <p>
+        Composer offers a convenent installer that you can execute directly from the command line. Feel free to <span style="color: blue;">download this file</span> or review it on <span style="color: blue;">GitHub</span> if you wish to know more about the inner working of the installer. The soruce is plain PHP. <br> <br>
+        There are , in short, two ways to install composer. Locally as part of your project, or globally as a system wide executable.
+       </p>
+       <h3>Locally <span style="color: rgb(157, 192, 192);">#</span></h3>
+       <p>To install composer locally, run installer in your project directory. See the <span style="color: blue;">Download page</span> for instructions.</p> <br> <br>
+       The installer will check a few PHP settings and the download <span style="border: 1px solid black;">composer . phar</span> to your working directory. This file is the composer binary. it is a PHAR (PHP archive), which is an archive format for PHP which can be run on the command line, amongst other things. <br> <br>
+       Now run <span style="border: 1px solid black;">php composer . phar</span> in order to run composer. <br> <br>
+       You can install composer to a specific directory by using the <span style="border: 1px solid black;">- --install-dir</span> option and additionally (re)name it as well using the <span style="border: 1px solid black;">--filename</span> option. When running the installer when following <span style="color: blue;">the Download page instructions</span> add the following parameters:
+       <p style="border: 2px solid rgb(245, 240, 240); background-color: rgb(245, 240, 240); padding: 20px;font-family: 'Times New Roman', Times, serif;">php composer-setup.php --install-dir=bin --filename=composer</p> 
+       Now run <span style="border: 1px solid black;">php bin/composer</span> in order to run Composer.
+       
+       <h3>Globally <span style="color: rgb(157, 192, 192);">#</span></h3> 
+       You can place the composer PHAR anywhere you wish. if you put it in a directory that is part of your <span style="border: 1px solid black;">PATH</span>, you can access it globally. <br>
+       On Unix systems you can even make it executable and invoke it without directly using the <span style="border: 1px solid black;">php</span> interpreter. <br> <br>
+       After running the installer following <span style="color: blue;">the Download page instructions</span> you can run this to move composer.phar to a directory that is in your path:
+       
+       <p style="border: 2px solid rgb(245, 240,240); background-color: rgb(245, 240, 240); padding: 20px; font-family: 'Times New Roman', Times, serif;">mv composer.phar /usr/local/bin/composer</p>
+
+       if you like to install it only only for your user and avoid requiring root permissions, you can use ~/.local/bin instead which is available by default on some Linux distributions.
+
+       <p style="border: 2px rgba(167, 179, 241, 0.89);background-color: rgba(167, 179, 241, 0.89);padding: 25px;margin-left: 20px;margin-right: 20px;"> <strong>Note:</strong> If the above fails due to permissions, you may need to run it again with <span style="border: 1px solid black;">sudo</span>. <br>
+        <strong>Note:</strong> On some versions of macOS the <span style="border: 1px solid black;">/usr</span> directory does not exist by default. If you receive the error "/usr/local/bin/composer: No such file or directory" then you must create the directory manually before proceeding: <br><span style="border: 1px solid black;">mkdir -p /usr/local/bin</span>. <br>
+        <strong>Note:</strong> For information on changing your PATH, please read the <span style="color: blue;">Wikipedia article</span>  and/or use your search engine of choice.
+        <p>Now run <span style="border: 1px solid black;">composer</span> in order to run composer instead of <span style="border: 1px solid black;">php composer.phar</span>.</p>
+        
+    </p>
+    <p>
+        <h2>Installation-Windows <span style="color: rgb(157, 192, 192);">#</span></h2>
+        <h3>Using the installer <span style="color: rgb(157, 192, 192);">#</span></h3>
+        <p>This is the easiest way to get Composer set up on your machine.</p>
+        Download and run <span style="color: blue;">Composer-Setup.exe.</span> It will install the latest Composer version and set up your PATH so that you can call <span style="border: 1px solid black;">composer</span> from any directory in your command line.
+        <p style="border: 2px rgba(167, 179, 241, 0.89);background-color: rgba(167, 179, 241, 0.89);padding: 25px;margin-left: 20px;margin-right: 20px;"> <strong>Note:</strong> Close your current terminal. Test usage with a new terminal: This is important since the PATH only gets loaded when the terminal starts.</p>
+        <h3>Manual installation <span style="color: rgb(157, 192, 192);">#</span></h3>
+        Change to a directory on your <span style="border: 1px solid black;">PATH</span>  and run the installer following <span style="color: blue;">the Download page instructions</span> to download <span style="border: 1px solid black;">composer.phar</span> <br> <br>
+
+        create a new <span style="border: 1px solid black;">composer.bat</span> file alongside <span style="border: 1px solid black;">composer.phar</span>: <br> <br>
+
+        Using cmd.exe:
+        <p style="border: 2px solid rgb(245, 240,240); background-color: rgb(245, 240, 240); padding: 20px;">C:\bin> echo @php "%~dp0composer.phar" %*>composer.bat</p>
+
+        Using PowerShell:
+
+        <p style="border: 2px solid rgb(245, 240,240); background-color: rgb(245, 240, 240); padding: 20px;">PS C:\bin> Set-Content composer.bat '@php "%~dp0composer.phar" %*'</p>
+
+        Add the directory to your PATH environment variable if it isn't already. For information on changing your PATH variable, please see <span style="color: blue;">this article</span> and/or use your search engine of choice. <br> <br>
+        Close your current terminal. Test usage with a new terminal:
+        <p style="border: 2px solid rgb(245, 240,240); background-color: rgb(245, 240, 240); padding: 20px;">C:\Users\username>composer -V</p>
+        <p style="border: 2px solid rgb(245, 240,240); background-color: rgb(245, 240, 240); padding: 20px;">Composer version 2.4.0 2022-08-16 16:10:48</p>
+        
+    </p>
+     <h2>Docker image <span  style="color: rgb(157, 192, 192);">#</span></h2>
+     Composer is published as Docker container in a few places, see the list in the <span style="color: blue;"> composer/docker README.</span> <br> <br>
+
+     Example usage:
+     <p style="border: 2px solid rgb(245, 240,240); background-color: rgb(245, 240, 240); padding: 20px;">docker pull composer/composer <br>
+        docker run --rm -it -v "$(pwd):/app" composer/composer install</p>
+        To add Composer to an existing <strong>Dockerfile</strong> you can simply copy binary file from pre-built, low-size images:
+
+        <p style="border: 2px solid rgb(245, 240,240); background-color: rgb(245, 240, 240); padding: 20px;"># Latest release <br>
+            COPY --from=composer/composer:latest-bin /composer /usr/bin/composer <br> <br>
+            
+            # Specific release <br>
+            COPY --from=composer/composer:2-bin /composer /usr/bin/composer</p>
+            
+            Read the <span style="color: blue;">image description</span> for further usage information. <br> <br>
+            <strong>Note:</strong> Docker specific issues should be filed <span style="color: blue;">on the composer/docker repository.</span> <br> <br>
+
+            <strong>Note:</strong> You may also use <span style="border: 1px solid black;">composer</span> instead of <span style="border: 1px solid black;">composer/composer</span> as image name above. It is shorter and is a Docker official image but is not published directly by us and thus usually receives new releases with a delay of a few days. <strong>Important:</strong> short-aliased images don't have binary-only equivalents, so for <span style="border: 1px solid black;">COPY --from</span> approach it's better to use <span style="border: 1px solid black;">composer/composer</span> ones.
+
+            <h2>Using Composer <span style="color: rgb(157, 192, 192);">#</span></h2>
+            Now that you've installed Composer, you are ready to use it! Head on over to the next chapter for a short demonstration. <br> 
+
+            <p style="text-align: center;"><span style="color: blue;">Basic Usage</span> →</p> <br> <br>
+
+            <p style="margin-left: 150px;font-style: italic;">Found a typo? Something is wrong in this documentation? <span style="color: blue;">Fork and edit</span> it!</p>
+
+    </p>
+</body>
+</html>
